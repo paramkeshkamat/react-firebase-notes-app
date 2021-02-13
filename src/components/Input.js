@@ -1,15 +1,32 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../context/context";
 import { db } from "../firebase";
+import firebase from "firebase/app";
 import { v4 as uuid } from "uuid";
 import styles from "../styles/Input.module.css";
 
 const Input = () => {
+  const { currentUser } = useContext(AuthContext);
   const [title, setTitle] = useState("");
   const [note, setNote] = useState("");
   const [showNote, setShowNote] = useState(false);
 
-  const handleClick = () => {
+  const addUser = (user) => {
+    db.collection("notes")
+      .doc(user.id)
+      .set({
+        username: currentUser.displayName,
+        ...user,
+        created: firebase.firestore.FieldValue.serverTimestamp(),
+      })
+      .catch((err) => console.log(err.message));
+    resetInputs();
     setShowNote(false);
+  };
+
+  const resetInputs = () => {
+    setTitle("");
+    setNote("");
   };
 
   return (
@@ -28,8 +45,13 @@ const Input = () => {
             value={note}
             onChange={(e) => setNote(e.target.value)}
           />
-          <button className={styles.AddButton} onClick={handleClick}>
-            Add...
+          <button
+            className={styles.AddButton}
+            onClick={() =>
+              addUser({ id: uuid(), title, note, isCompleted: false })
+            }
+          >
+            Add
           </button>
         </div>
       )}
