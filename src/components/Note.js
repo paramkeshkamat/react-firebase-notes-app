@@ -59,13 +59,7 @@ const Note = (user) => {
   }, [isError]);
 
   return (
-    <div
-      style={{ opacity: isCompleted ? 0.5 : 1 }}
-      className={styles.note}
-      onBlur={() => {
-        setIsEditing(false);
-      }}
-    >
+    <div style={{ opacity: isCompleted ? 0.5 : 1 }} className={styles.note}>
       {isEditing ? (
         <input
           type="text"

@@ -43,7 +43,7 @@ const Input = () => {
   }, [isError]);
 
   return (
-    <div className={styles.input} onBlur={() => setShowNote(false)}>
+    <div className={styles.input}>
       <input
         type="text"
         placeholder="Title..."
@@ -52,7 +52,7 @@ const Input = () => {
         onFocus={() => setShowNote(true)}
       />
       {showNote && (
-        <div>
+        <div className="input-bottom">
           <textarea
             placeholder="Add a Note..."
             value={note}
@@ -60,7 +60,7 @@ const Input = () => {
           />
           {isError && <Error />}
           <button
-            className={styles.AddButton}
+            className={styles.addButton}
             onClick={() =>
               addNote({ id: uuid(), title, note, isCompleted: false })
             }

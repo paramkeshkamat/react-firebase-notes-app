@@ -38,7 +38,7 @@
   display: none;
 }
 
-.AddButton {
+.addButton {
   text-align: right;
   background-color: #ffd32a;
   border: none;
@@ -47,4 +47,8 @@
   font-size: 14px;
   cursor: pointer;
   outline: none;
+}
+
+.input-botttom {
+  transition: all 0.4s ease;
 }
