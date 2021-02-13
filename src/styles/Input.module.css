@@ -1,0 +1,45 @@
+.Input {
+  width: 90vw;
+  max-width: 450px;
+  margin: 50px auto;
+  padding: 8px 10px 12px 15px;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+}
+
+::placeholder {
+  font-weight: 600;
+}
+
+.Input input,
+.Input textarea {
+  border: none;
+  width: 100%;
+  outline: none;
+  word-break: break-all;
+  font-size: 13px;
+}
+
+.Input textarea {
+  height: auto;
+  display: inline-block;
+  resize: none;
+  font-size: 12px;
+  margin: 10px 0 5px 0;
+  min-height: 50px;
+}
+.Input textarea::-webkit-scrollbar {
+  display: none;
+}
+
+.AddButton {
+  text-align: right;
+  background-color: #7771b4;
+  color: #fff;
+  border: none;
+  padding: 3px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  cursor: pointer;
+  outline: none;
+}
