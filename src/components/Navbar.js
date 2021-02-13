@@ -11,7 +11,7 @@ const Navbar = () => {
     <nav className={styles.navbar}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <img src="/favicon.png" alt="logo" />
+          <img src="/logo.png" alt="logo" />
           <h1>Notes</h1>
         </div>
         <div className={styles.user}>

@@ -1,4 +1,5 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
+import Error from "./Error";
 import { AuthContext } from "../context/context";
 import { db } from "../firebase";
 import firebase from "firebase/app";
@@ -10,18 +11,23 @@ const Input = () => {
   const [title, setTitle] = useState("");
   const [note, setNote] = useState("");
   const [showNote, setShowNote] = useState(false);
+  const [isError, setIsError] = useState(false);
 
-  const addUser = (user) => {
-    db.collection("notes")
-      .doc(user.id)
-      .set({
-        username: currentUser.displayName,
-        ...user,
-        created: firebase.firestore.FieldValue.serverTimestamp(),
-      })
-      .catch((err) => console.log(err.message));
-    resetInputs();
-    setShowNote(false);
+  const addNote = (user) => {
+    if (title.length < 1 || note.length < 1) {
+      setIsError(true);
+    } else {
+      db.collection("notes")
+        .doc(user.id)
+        .set({
+          username: currentUser.displayName,
+          ...user,
+          created: firebase.firestore.FieldValue.serverTimestamp(),
+        })
+        .catch((err) => console.log(err.message));
+      resetInputs();
+      setShowNote(false);
+    }
   };
 
   const resetInputs = () => {
@@ -29,8 +35,15 @@ const Input = () => {
     setNote("");
   };
 
+  useEffect(() => {
+    const error = setTimeout(() => {
+      setIsError(false);
+    }, 3000);
+    return () => clearTimeout(error, 3000);
+  }, [isError]);
+
   return (
-    <div className={styles.Input}>
+    <div className={styles.input} onBlur={() => setShowNote(false)}>
       <input
         type="text"
         placeholder="Title..."
@@ -45,10 +58,11 @@ const Input = () => {
             value={note}
             onChange={(e) => setNote(e.target.value)}
           />
+          {isError && <Error />}
           <button
             className={styles.AddButton}
             onClick={() =>
-              addUser({ id: uuid(), title, note, isCompleted: false })
+              addNote({ id: uuid(), title, note, isCompleted: false })
             }
           >
             Add

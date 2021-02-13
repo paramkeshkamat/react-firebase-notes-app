@@ -1,8 +1,14 @@
 .notes {
-  width: 95vw;
+  width: 90vw;
   max-width: 998px;
   margin: auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   grid-gap: 20px;
+  padding-bottom: 40px;
+}
+
+.notes > * {
+  align-content:flex-start;
+  height: auto;
 }
