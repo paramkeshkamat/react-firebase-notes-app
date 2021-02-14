@@ -20,7 +20,7 @@ const Navbar = () => {
             className={styles.signOutButton}
             onClick={() => auth.signOut()}
           >
-            sign out
+            Sign out
           </button>
         </div>
       </div>

@@ -7,8 +7,13 @@
   min-width: 300;
 }
 
+.note h2 {
+  font-size: 22px;
+}
 .note p {
   margin: 15px 0;
+  word-wrap: break-word;
+  font-size: 15px;
 }
 
 .buttons {
@@ -38,19 +43,19 @@
   width: 100%;
   outline: none;
   word-break: break-all;
-  font-size: 24px;
+  font-size: 22px;
 }
 
 .note input {
   font-weight: 700;
 }
 .note textarea {
-  height: auto;
+  min-height: 26px;
+  /* height: auto; */
   display: inline-block;
   resize: none;
-  font-size: 16px;
-  margin-top: 10px;
-  min-height: 50px;
+  font-size: 15px;
+  margin-top: 15px;
 }
 .note textarea::-webkit-scrollbar {
   display: none;

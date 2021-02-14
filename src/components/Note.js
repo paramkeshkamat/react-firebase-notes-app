@@ -34,13 +34,11 @@ const Note = (user) => {
 
   const editNote = () => {
     setIsEditing(!isEditing);
-    titleRef.current?.focus();
     if (newTitle.length < 1 || newNote.length < 1) {
       setIsError(true);
       setNewTitle(title);
       setNewNote(note);
     } else {
-      console.log(titleRef.current);
       db.collection("notes")
         .doc(id)
         .update({
@@ -57,6 +55,12 @@ const Note = (user) => {
     }, 3000);
     return () => clearTimeout(error, 3000);
   }, [isError]);
+
+  useEffect(() => {
+    if (isEditing && titleRef.current) {
+      titleRef.current.focus();
+    }
+  }, [isEditing]);
 
   return (
     <div style={{ opacity: isCompleted ? 0.5 : 1 }} className={styles.note}>
