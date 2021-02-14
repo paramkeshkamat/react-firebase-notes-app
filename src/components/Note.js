@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import Error from "./Error";
 import { db } from "../firebase";
+import { months } from "../data";
 import { Tooltip } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import CheckIcon from "@material-ui/icons/Check";
@@ -9,12 +10,20 @@ import EditIcon from "@material-ui/icons/Edit";
 import styles from "../styles/Note.module.css";
 
 const Note = (user) => {
-  const { id, title, note, isCompleted } = user;
+  const { id, title, note, isCompleted, created } = user;
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
   const [newNote, setNewNote] = useState(note);
   const [isError, setIsError] = useState(false);
   const titleRef = useRef(null);
+
+  const secToDateTime = () => {
+    const time = new Date(Date.UTC(1970, 0, 1));
+    time.setUTCSeconds(created);
+    return `${months[time.getMonth()]} ${time.getDate()} ${
+      time.getFullYear() - 1969
+    }`;
+  };
 
   const deleteNote = () => {
     db.collection("notes")
@@ -101,6 +110,9 @@ const Note = (user) => {
             <DeleteIcon />
           </button>
         </Tooltip>
+      </div>
+      <div className={styles.createdDate}>
+        <p>created on {secToDateTime()} </p>
       </div>
     </div>
   );

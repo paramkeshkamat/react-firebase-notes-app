@@ -18,6 +18,14 @@ const Notes = () => {
     return () => unsubscribe();
   }, [currentUser]);
 
+  if (notes.length < 1) {
+    return (
+      <div className={styles.noNotes}>
+        <h2>No notes to display...</h2>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.notes}>
       {notes.map((note) => (

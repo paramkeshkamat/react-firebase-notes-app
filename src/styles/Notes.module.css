@@ -9,6 +9,17 @@
 }
 
 .notes > * {
-  align-content:flex-start;
+  align-content: flex-start;
   height: auto;
+}
+
+.noNotes {
+  text-align: center;
+  color: #807d7d;
+  margin-top: 100px;
+}
+
+.noNotes h2 {
+  font-weight: 500;
+  font-size: 20px;
 }

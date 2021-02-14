@@ -2,22 +2,27 @@
   padding: 15px;
   border-radius: 7px;
   box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
-  height: auto;
   background-color: #fff;
   min-width: 300;
+  position: relative;
 }
 
 .note h2 {
   font-size: 22px;
+  word-wrap: break-word;
 }
 .note p {
   margin: 15px 0;
   word-wrap: break-word;
   font-size: 15px;
+  padding-bottom: 30px;
 }
 
 .buttons {
   display: flex;
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
 }
 
 .iconButton {
@@ -50,13 +55,23 @@
   font-weight: 700;
 }
 .note textarea {
-  min-height: 26px;
-  /* height: auto; */
   display: inline-block;
   resize: none;
   font-size: 15px;
   margin-top: 15px;
+  height: 150px;
+  margin-bottom: 30px;
 }
 .note textarea::-webkit-scrollbar {
   display: none;
+}
+
+.note .createdDate {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  font-size: 1px;
+  font-weight: 500;
+  color: #666565;
+  height: 40px;
 }
