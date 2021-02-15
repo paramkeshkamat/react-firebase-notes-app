@@ -59,8 +59,8 @@
   resize: none;
   font-size: 15px;
   margin-top: 15px;
-  height: 150px;
-  margin-bottom: 30px;
+  height: 120px;
+  margin-bottom: 40px;
 }
 .note textarea::-webkit-scrollbar {
   display: none;

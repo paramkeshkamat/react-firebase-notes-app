@@ -18,8 +18,8 @@ const Note = (user) => {
   const titleRef = useRef(null);
 
   const secToDateTime = () => {
-    const time = new Date(Date.UTC(1970, 0, 1));
-    time.setUTCSeconds(created);
+    const time = new Date(1970, 0, 1);
+    time.setSeconds(created);
     return `${months[time.getMonth()]} ${time.getDate()} ${
       time.getFullYear() - 1969
     }`;

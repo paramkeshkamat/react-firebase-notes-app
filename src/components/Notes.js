@@ -12,6 +12,7 @@ const Notes = () => {
     const unsubscribe = db
       .collection("notes")
       .where("username", "==", currentUser.displayName)
+      .orderBy("created", "desc")
       .onSnapshot((snapShot) => {
         setNotes(snapShot.docs.map((doc) => doc.data()));
       });
