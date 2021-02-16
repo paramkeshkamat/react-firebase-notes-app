@@ -9,14 +9,12 @@ const Notes = () => {
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
-    const unsubscribe = db
-      .collection("notes")
-      .where("username", "==", currentUser.displayName)
-      .orderBy("created", "desc")
-      .onSnapshot((snapShot) => {
-        setNotes(snapShot.docs.map((doc) => doc.data()));
-      });
-    return () => unsubscribe();
+   db.collection("notes")
+     .where("username", "==", currentUser.displayName)
+     .orderBy("created", "desc")
+     .onSnapshot((snapShot) => {
+       setNotes(snapShot.docs.map((doc) => doc.data()));
+     });
   }, [currentUser]);
 
   if (notes.length < 1) {
